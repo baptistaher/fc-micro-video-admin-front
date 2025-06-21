@@ -4,6 +4,7 @@ import './index.css';
 import App from './App.tsx';
 import { Provider } from 'react-redux';
 import { store } from './app/store.ts';
+import { BrowserRouter } from 'react-router';
 import { StyledEngineProvider } from '@mui/material';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import '@fontsource/roboto/300.css';
@@ -15,9 +16,11 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <StyledEngineProvider enableCssLayer>
       <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </BrowserRouter>
     </StyledEngineProvider>
   </StrictMode>,
 );
