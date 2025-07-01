@@ -13,7 +13,7 @@ export interface Result {
 export interface Category {
   id: string;
   name: string;
-  delete_at: string;
+  deleted_at: string | null;
   is_active: boolean;
   created_at: string;
   updated_at: string;
