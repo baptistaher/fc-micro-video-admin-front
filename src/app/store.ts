@@ -4,21 +4,21 @@ import {
   type Action,
   combineReducers,
 } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+// import counterReducer from '../features/counter/counterSlice';
 import categoriesReducer, {
   categoriesApiSlice,
 } from '../features/categories/categorySlice'; // categoriesApiSlice,
 import { apiSlice } from '../features/api/apiSlice';
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
-  categories: categoriesReducer,
+  // counter: counterReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
 
 export const store = configureStore({
   reducer: {
     ...rootReducer,
+    categories: categoriesReducer,
     [categoriesApiSlice.reducerPath]: apiSlice.reducer,
   },
 

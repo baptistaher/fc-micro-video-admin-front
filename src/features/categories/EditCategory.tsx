@@ -8,7 +8,7 @@ import {
   updateCategory,
   type Category,
 } from './categorySlice';
-import { CategoryForm } from './components/CategorryForm';
+import { CategoryForm } from './components/CategoryForm';
 
 export const CategoryEdit = () => {
   const id = useParams().id || '';
