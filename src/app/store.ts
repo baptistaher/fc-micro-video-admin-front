@@ -5,22 +5,29 @@ import {
   combineReducers,
 } from '@reduxjs/toolkit';
 // import counterReducer from '../features/counter/counterSlice';
-import categoriesReducer, {
-  categoriesApiSlice,
-} from '../features/categories/categorySlice'; // categoriesApiSlice,
+import { categoriesApiSlice } from '../features/categories/categorySlice'; // categoriesApiSlice,
 import { apiSlice } from '../features/api/apiSlice';
+import { castMembersApiSlice } from '../features/castMembers/castMembersSlice';
 
 const rootReducer = combineReducers({
   // counter: counterReducer,
-  [apiSlice.reducerPath]: apiSlice.reducer,
+  api: apiSlice.reducer,
+  categories: categoriesApiSlice.reducer,
+  castMembers: castMembersApiSlice.reducer,
 });
 
 export const store = configureStore({
-  reducer: {
-    ...rootReducer,
-    categories: categoriesReducer,
-    [categoriesApiSlice.reducerPath]: apiSlice.reducer,
-  },
+  reducer: rootReducer,
+  // reducer: {
+  //   ...rootReducer,
+  //   categories: categoriesReducer,
+  //   api: combineReducers({
+  //     [apiSlice.reducerPath]: apiSlice.reducer,
+  //     [castMembersApiSlice.reducerPath]: castMembersApiSlice.reducer,
+  //   }),
+  //   [categoriesApiSlice.reducerPath]: categoriesApiSlice.reducer,
+  //   [castMembersApiSlice.reducerPath]: castMembersApiSlice.reducer,
+  // },
 
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),

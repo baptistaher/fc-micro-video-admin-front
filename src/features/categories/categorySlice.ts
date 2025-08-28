@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { RootState } from '../../app/store';
-import { apiSlice } from '../api/apiSlice';
 import type { CategoryParams, Result, Results } from '../../types/Category';
+import { apiSlice } from '../api/apiSlice';
 
 export interface Category {
   id: string;
@@ -145,23 +144,23 @@ const categoriesSlice = createSlice({
 });
 
 // Selectors
-export const selectCategories = (state: RootState) => state.categories;
+// export const selectCategories = (state: RootState) => state.categories;
 // Select category by id
-export const selectCategoryById = (state: RootState, id: string) => {
-  const category = state.categories.find((category) => category.id === id);
+// export const selectCategoryById = (state: RootState, id: string) => {
+//   const category = state.categories.find((category) => category.id === id);
 
-  return (
-    category || {
-      id: '',
-      name: '',
-      description: '',
-      is_active: false,
-      deleted_at: null,
-      created_at: '',
-      updated_at: '',
-    }
-  );
-};
+//   return (
+//     category || {
+//       id: '',
+//       name: '',
+//       description: '',
+//       is_active: false,
+//       deleted_at: null,
+//       created_at: '',
+//       updated_at: '',
+//     }
+//   );
+// };
 
 export const { createCategory, updateCategory, deleteCategory } =
   categoriesSlice.actions;
