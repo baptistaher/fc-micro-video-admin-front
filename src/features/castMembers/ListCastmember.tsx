@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
+
+import { Box, Button, Typography } from '@mui/material';
+import type { GridFilterModel } from '@mui/x-data-grid';
+import { useSnackbar } from 'notistack';
+import { Link } from 'react-router';
+
 import {
   useDeleteCastMemberMutation,
   useGetCastMembersQuery,
 } from './castMembersSlice';
-import type { GridFilterModel } from '@mui/x-data-grid';
-import { Box, Button, Typography } from '@mui/material';
-import { Link } from 'react-router';
 import { CastMembersTable } from './components/CastMemberTable';
-import { useSnackbar } from 'notistack';
+
 export const CastMemberList = () => {
   const { enqueueSnackbar } = useSnackbar();
 

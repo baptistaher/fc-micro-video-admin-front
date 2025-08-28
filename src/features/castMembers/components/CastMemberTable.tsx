@@ -1,3 +1,5 @@
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Box, IconButton, Typography } from '@mui/material';
 import {
   DataGrid,
   type GridColDef,
@@ -5,10 +7,9 @@ import {
   type GridRenderCellParams,
   type GridRowsProp,
 } from '@mui/x-data-grid';
-import type { Results } from '../../../types/CastMembers';
-import { Box, IconButton, Typography } from '@mui/material';
 import { Link } from 'react-router';
-import DeleteIcon from '@mui/icons-material/Delete';
+
+import type { Results } from '../../../types/CastMembers';
 
 type Props = {
   data: Results | undefined;

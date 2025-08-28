@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
+
 import { Box, Button, Typography } from '@mui/material';
+import type { GridFilterModel } from '@mui/x-data-grid';
+import { useSnackbar } from 'notistack';
 import { Link } from 'react-router';
+
 import {
   useDeleteCategoryMutation,
   useGetCategoriesQuery,
 } from './categorySlice';
-
-import type { GridFilterModel } from '@mui/x-data-grid';
-import { useSnackbar } from 'notistack';
 import { CategoriesTable } from './components/CategoryTable';
 
 export const CategoryList = () => {

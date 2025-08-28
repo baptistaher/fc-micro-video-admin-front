@@ -1,7 +1,8 @@
-import { describe, expect, it } from 'vitest';
 import type { GridFilterModel } from '@mui/x-data-grid';
 import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router';
+import { describe, expect, it } from 'vitest';
+
 import { CastMembersTable } from './CastMemberTable';
 
 const Props = {

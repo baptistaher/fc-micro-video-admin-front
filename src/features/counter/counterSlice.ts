@@ -2,30 +2,31 @@ import {
   createAsyncThunk,
   createSlice,
   type PayloadAction,
-} from "@reduxjs/toolkit";
-import { fetchCount } from "./counterAPI";
-import type { AppThunk, RootState } from "../../app/store";
+} from '@reduxjs/toolkit';
+
+import type { AppThunk, RootState } from '../../app/store';
+import { fetchCount } from './counterAPI';
 
 export type CounterState = {
   value: number;
-  status: "idle" | "loading" | "failed";
+  status: 'idle' | 'loading' | 'failed';
 };
 
 const initialState: CounterState = {
   value: 0,
-  status: "idle",
+  status: 'idle',
 };
 
 export const incrementAsync = createAsyncThunk(
-  "counter/fetchCount",
+  'counter/fetchCount',
   async (amount: number) => {
     const response = await fetchCount(amount);
     return response.data;
-  }
+  },
 );
 
 export const counterSlice = createSlice({
-  name: "counter",
+  name: 'counter',
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
@@ -49,14 +50,14 @@ export const counterSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(incrementAsync.pending, (state) => {
-        state.status = "loading";
+        state.status = 'loading';
       })
       .addCase(incrementAsync.fulfilled, (state, action) => {
-        state.status = "idle";
+        state.status = 'idle';
         state.value += action.payload;
       })
       .addCase(incrementAsync.rejected, (state) => {
-        state.status = "failed";
+        state.status = 'failed';
       });
   },
 });

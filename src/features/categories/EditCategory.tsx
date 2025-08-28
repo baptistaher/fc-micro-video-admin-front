@@ -1,7 +1,9 @@
+import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
+
 import { Box, Paper, Typography } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
 import { useParams } from 'react-router';
+
 import {
   useGetCategoryQuery,
   useUpdateCategoryMutation,

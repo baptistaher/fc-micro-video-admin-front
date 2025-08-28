@@ -1,7 +1,8 @@
-import { expect, it, describe, vi, beforeEach } from 'vitest';
 import { render } from '@testing-library/react';
-import { CastMemberForm } from './CastMemberForm';
 import { BrowserRouter } from 'react-router';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { CastMemberForm } from './CastMemberForm';
 
 const Props = {
   castMember: {

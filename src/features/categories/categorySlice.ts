@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import type { CategoryParams, Result, Results } from '../../types/Category';
 import { apiSlice } from '../api/apiSlice';
 

@@ -12,6 +12,16 @@ export default defineConfig({
         inline: ['@mui/x-data-grid'],
       },
     },
+    // browser: {
+    //   provider: 'playwright',
+    //   enabled: true,
+    //   instances: [
+    //     {
+    //       // name: 'chromium',
+    //       browser: 'chromium',
+    //     },
+    //   ],
+    // },
   },
   // resolve: {
   //   alias: {},

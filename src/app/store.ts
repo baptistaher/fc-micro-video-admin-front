@@ -1,13 +1,14 @@
 import {
-  configureStore,
-  type ThunkAction,
-  type Action,
   combineReducers,
+  configureStore,
+  type Action,
+  type ThunkAction,
 } from '@reduxjs/toolkit';
+
 // import counterReducer from '../features/counter/counterSlice';
-import { categoriesApiSlice } from '../features/categories/categorySlice'; // categoriesApiSlice,
 import { apiSlice } from '../features/api/apiSlice';
 import { castMembersApiSlice } from '../features/castMembers/castMembersSlice';
+import { categoriesApiSlice } from '../features/categories/categorySlice'; // categoriesApiSlice,
 
 const rootReducer = combineReducers({
   // counter: counterReducer,

@@ -8,6 +8,7 @@ import {
   type GridRowsProp,
 } from '@mui/x-data-grid';
 import { Link } from 'react-router';
+
 import type { Results } from '../../../types/Category';
 
 type Props = {

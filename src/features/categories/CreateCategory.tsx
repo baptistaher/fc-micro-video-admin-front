@@ -1,6 +1,8 @@
+import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
+
 import { Box, Paper, Typography } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
+
 import { useCreateCategoryMutation, type Category } from './categorySlice';
 import { CategoryForm } from './components/CategoryForm';
 

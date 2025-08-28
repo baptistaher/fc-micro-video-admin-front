@@ -1,3 +1,5 @@
+import type { ChangeEvent, FormEvent } from 'react';
+
 import {
   Box,
   Button,
@@ -10,9 +12,9 @@ import {
   RadioGroup,
   TextField,
 } from '@mui/material';
-import type { ChangeEvent, FormEvent } from 'react';
-import type { CastMember } from '../../../types/CastMembers';
 import { Link } from 'react-router';
+
+import type { CastMember } from '../../../types/CastMembers';
 
 type Props = {
   castMember: CastMember;

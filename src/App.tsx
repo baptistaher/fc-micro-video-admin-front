@@ -1,15 +1,17 @@
 import { Box, ThemeProvider, Typography } from '@mui/material';
+import { SnackbarProvider } from 'notistack';
+import { Route, Routes } from 'react-router';
+
 import { Header } from './components/Header';
 import Layout from './components/Layout';
 import { appTheme } from './config/theme';
-import { Route, Routes } from 'react-router';
-import { CategoryList } from './features/categories/ListCategory';
-import { CategoryCreate } from './features/categories/CreateCategory';
-import { CategoryEdit } from './features/categories/EditCategory';
-import { SnackbarProvider } from 'notistack';
-import { CastMemberList } from './features/castMembers/ListCastmember';
 import { CastMemberCreate } from './features/castMembers/CreateCastMember';
 import { CastMemberEdit } from './features/castMembers/EditCastMember';
+import { CastMemberList } from './features/castMembers/ListCastmember';
+import { CategoryCreate } from './features/categories/CreateCategory';
+import { CategoryEdit } from './features/categories/EditCategory';
+import { CategoryList } from './features/categories/ListCategory';
+
 function App() {
   return (
     <ThemeProvider theme={appTheme}>

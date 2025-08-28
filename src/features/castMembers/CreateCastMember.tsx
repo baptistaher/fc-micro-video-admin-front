@@ -1,8 +1,10 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
-import { useCreateCastMemberMutation } from './castMembersSlice';
-import { useSnackbar } from 'notistack';
-import type { CastMember } from '../../types/CastMembers';
+
 import { Box, Paper, Typography } from '@mui/material';
+import { useSnackbar } from 'notistack';
+
+import type { CastMember } from '../../types/CastMembers';
+import { useCreateCastMemberMutation } from './castMembersSlice';
 import { CastMemberForm } from './components/CastMemberForm';
 
 export const CastMemberCreate = () => {

@@ -1,12 +1,14 @@
+import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
+
+import { Box, Paper, Typography } from '@mui/material';
+import { useSnackbar } from 'notistack';
 import { useParams } from 'react-router';
+
+import type { CastMember } from '../../types/CastMembers';
 import {
   useGetCastMemberQuery,
   useUpdateCastMemberMutation,
 } from './castMembersSlice';
-import { useSnackbar } from 'notistack';
-import type { CastMember } from '../../types/CastMembers';
-import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
-import { Box, Paper, Typography } from '@mui/material';
 import { CastMemberForm } from './components/CastMemberForm';
 
 export const CastMemberEdit = () => {

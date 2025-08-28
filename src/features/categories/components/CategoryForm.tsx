@@ -1,3 +1,5 @@
+import { type ChangeEvent, type FormEvent } from 'react';
+
 import {
   Box,
   Button,
@@ -7,8 +9,8 @@ import {
   Switch,
   TextField,
 } from '@mui/material';
-import { type ChangeEvent, type FormEvent } from 'react';
 import { Link } from 'react-router';
+
 import type { Category } from '../categorySlice';
 
 type Props = {
