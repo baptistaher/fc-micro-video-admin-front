@@ -36,7 +36,10 @@ export const CastMemberCreate = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    setCastMemberState({ ...castMemberState, [name]: value });
+    setCastMemberState({
+      ...castMemberState,
+      [name]: value,
+    });
   };
 
   useEffect(() => {
@@ -48,7 +51,9 @@ export const CastMemberCreate = () => {
     }
 
     if (status.error) {
-      enqueueSnackbar('Cast Member creation failed', { variant: 'error' });
+      enqueueSnackbar('Cast Member creation failed', {
+        variant: 'error',
+      });
     }
   }, [status.error, status.isSuccess, enqueueSnackbar]);
   return (

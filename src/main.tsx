@@ -12,9 +12,11 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router';
 
 import App from './App.tsx';
-import { store } from './app/store.ts';
+import { setupStore } from './app/store.ts';
 
 import './index.css';
+
+const store = setupStore();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { MemoryRouter } from 'react-router';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { CategoryForm } from './CategoryForm';
 
@@ -21,8 +22,25 @@ const Props = {
 };
 
 describe('CategoryForm', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
   it('should render correctly', () => {
-    const { asFragment } = render(<CategoryForm {...Props} />);
+    const { asFragment } = render(
+      <MemoryRouter>
+        <CategoryForm {...Props} />
+      </MemoryRouter>,
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('should render CategoryForm with loading', () => {
+    const { asFragment } = render(
+      <MemoryRouter>
+        <CategoryForm {...Props} isLoading={true} isDisabled={true} />
+      </MemoryRouter>,
+    );
 
     expect(asFragment()).toMatchSnapshot();
   });

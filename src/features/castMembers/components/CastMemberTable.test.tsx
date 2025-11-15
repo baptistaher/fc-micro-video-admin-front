@@ -42,8 +42,8 @@ describe('CastMemberTable', () => {
           name: 'test',
           type: 1,
           deletedAt: null,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
+          createdAt: '2025-08-29T12:14:42.349Z',
+          updatedAt: '2025-08-29T12:14:42.349Z',
         },
       ],
       meta: {
