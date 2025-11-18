@@ -7,6 +7,7 @@ import {
   type GridRenderCellParams,
   type GridRowsProp,
 } from '@mui/x-data-grid';
+import type { GridSlotsComponentsProps } from '@mui/x-data-grid';
 import { Link } from 'react-router';
 
 import type { Results } from '../../../types/Category';
@@ -33,10 +34,14 @@ export const CategoriesTable = ({
   handleOnPageSizeChange,
   handleDelete,
 }: Props) => {
-  const componentsProps = {
+  const componentsProps: GridSlotsComponentsProps = {
     toolbar: {
       showQuickFilter: true,
       quickFilterProps: { debounceMs: 500 },
+    },
+    loadingOverlay: {
+      variant: 'circular-progress',
+      noRowsVariant: 'circular-progress',
     },
   };
 

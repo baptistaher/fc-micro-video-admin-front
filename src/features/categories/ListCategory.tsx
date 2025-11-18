@@ -25,7 +25,9 @@ export const CategoryList = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   function handleOnPageChange(page: number) {
-    setOptions({ ...options, page: page + 1 });
+    console.log('Clicked page', page);
+    // setOptions((prev) => ({ ...prev, page: page + 1 }));
+    // setOptions({ ...options, page: page + 1 });
   }
 
   function handleOnPageSizeChange(perPage: number) {
@@ -46,6 +48,7 @@ export const CategoryList = () => {
   }
 
   useEffect(() => {
+    console.log('Current options:', options);
     if (deleteCategoryState.isSuccess) {
       enqueueSnackbar('Category deleted successfully', { variant: 'success' });
     }
