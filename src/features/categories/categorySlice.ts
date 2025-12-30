@@ -47,6 +47,8 @@ function parseQueryParams(params: CategoryParams) {
 function getCategories({ page = 1, perPage = 10, search = '' }) {
   const params = { page, perPage, search, isActive: true };
 
+  console.log('Current Params for page', params.page);
+
   return `${endpointURL}?${parseQueryParams(params)}`;
 }
 

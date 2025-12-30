@@ -110,6 +110,9 @@ export const CategoriesTable = ({
 
   const rowCount = data ? data.meta.total : 0;
 
+  console.log('Rows count:', rowCount);
+  // console.log("Current Page Size:", model);
+
   return (
     <Box sx={{ display: 'flex', height: 600 }}>
       <DataGrid

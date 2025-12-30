@@ -13,7 +13,7 @@ import { CategoryForm } from './components/CategoryForm';
 
 export const CategoryEdit = () => {
   const id = useParams().id || '';
-  const { data: category, isFetching } = useGetCategoryQuery({ id });
+  const { data: category } = useGetCategoryQuery({ id });
 
   const { enqueueSnackbar } = useSnackbar();
 

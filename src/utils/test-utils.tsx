@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import React from 'react';
+import React, { StrictMode } from 'react';
 
 import type { RenderOptions } from '@testing-library/react';
 import { render } from '@testing-library/react';
@@ -30,11 +30,13 @@ export function renderWithProviders(
   } = extendedRenderOptions;
 
   const Wrapper = ({ children }: PropsWithChildren) => (
-    <Provider store={store}>
-      <BrowserRouter>
-        <SnackbarProvider>{children}</SnackbarProvider>
-      </BrowserRouter>
-    </Provider>
+    <StrictMode>
+      <Provider store={store}>
+        <BrowserRouter>
+          <SnackbarProvider>{children}</SnackbarProvider>
+        </BrowserRouter>
+      </Provider>
+    </StrictMode>
   );
 
   // Return an object with the store and all of RTL's query functions

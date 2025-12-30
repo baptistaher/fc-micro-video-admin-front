@@ -19,14 +19,16 @@ export const CategoryList = () => {
     rowsPerPage: [10, 25, 50, 100],
   });
 
-  const { data, isFetching, error } = useGetCategoriesQuery(options);
+  const { data, isFetching, error } = useGetCategoriesQuery(options, {
+    refetchOnMountOrArgChange: true,
+  });
   const [deleteCategory, deleteCategoryState] = useDeleteCategoryMutation();
 
   const { enqueueSnackbar } = useSnackbar();
 
   function handleOnPageChange(page: number) {
     console.log('Clicked page', page);
-    // setOptions((prev) => ({ ...prev, page: page + 1 }));
+    setOptions((prev) => ({ ...prev, page: page + 1 }));
     // setOptions({ ...options, page: page + 1 });
   }
 
@@ -56,7 +58,7 @@ export const CategoryList = () => {
     if (deleteCategoryState.isError) {
       enqueueSnackbar('Error deleting category', { variant: 'error' });
     }
-  }, [deleteCategoryState, enqueueSnackbar]);
+  }, [deleteCategoryState, enqueueSnackbar, options]);
 
   if (error) {
     return <Typography>Error fetching categories</Typography>;
