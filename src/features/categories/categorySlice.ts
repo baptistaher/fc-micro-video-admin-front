@@ -28,7 +28,7 @@ const endpointURL = '/categories';
 function parseQueryParams(params: CategoryParams) {
   const query = new URLSearchParams();
 
-  if (params.page) {
+  if (params.page !== undefined) {
     query.append('page', params.page.toString());
   }
   if (params.perPage) {

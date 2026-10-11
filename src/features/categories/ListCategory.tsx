@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { Box, Button, Typography } from '@mui/material';
-import type { GridFilterModel } from '@mui/x-data-grid';
-import { useSnackbar } from 'notistack';
+import type { GridFilterModel } from '@mui/x-data-grid/models';
+import { useSnackbar } from 'notistack/';
 import { Link } from 'react-router';
 
 import {
@@ -19,21 +19,28 @@ export const CategoryList = () => {
     rowsPerPage: [10, 25, 50, 100],
   });
 
-  const { data, isFetching, error } = useGetCategoriesQuery(options, {
-    refetchOnMountOrArgChange: true,
-  });
+  const { data, isFetching, error } = useGetCategoriesQuery(
+    {
+      ...options,
+      page: options.page,
+    },
+    {
+      refetchOnMountOrArgChange: true,
+    },
+  );
   const [deleteCategory, deleteCategoryState] = useDeleteCategoryMutation();
 
   const { enqueueSnackbar } = useSnackbar();
 
   function handleOnPageChange(page: number) {
-    console.log('Clicked page', page);
     setOptions((prev) => ({ ...prev, page: page + 1 }));
-    // setOptions({ ...options, page: page + 1 });
+    console.log('Page changed to', page + 1);
   }
 
   function handleOnPageSizeChange(perPage: number) {
-    setOptions({ ...options, perPage });
+    setOptions((prev) =>
+      prev.perPage === perPage ? prev : { ...prev, perPage, page: 1 },
+    );
   }
 
   function handleFilterChange(filterModel: GridFilterModel) {
@@ -80,6 +87,7 @@ export const CategoryList = () => {
         data={data}
         isFetching={isFetching}
         handleDelete={handleDeleteCategory}
+        pageIndex={options.page}
         perPage={options.perPage}
         rowsPerPage={options.rowsPerPage}
         handleOnPageChange={handleOnPageChange}

@@ -15,6 +15,7 @@ import type { Results } from '../../../types/Category';
 type Props = {
   data: Results | undefined;
   perPage: number;
+  pageIndex?: number;
   isFetching: boolean;
   rowsPerPage?: number[];
 
@@ -27,6 +28,7 @@ type Props = {
 export const CategoriesTable = ({
   data,
   perPage,
+  pageIndex,
   isFetching,
   rowsPerPage,
   handleOnPageChange,
@@ -118,12 +120,9 @@ export const CategoriesTable = ({
       <DataGrid
         rows={rows}
         columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: perPage,
-            },
-          },
+        paginationModel={{
+          page: pageIndex ? pageIndex - 1 : 0,
+          pageSize: perPage,
         }}
         pageSizeOptions={rowsPerPage}
         loading={isFetching}
