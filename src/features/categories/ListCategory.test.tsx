@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { delay, http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
@@ -24,6 +24,13 @@ export const handlers = [
     // console.log(categoryResponse.meta.total);
 
     return HttpResponse.json(categoryResponse);
+  }),
+  http.delete(`${baseURL}/categories/:id`, async ({ params }) => {
+    await delay(150);
+    const { id } = params;
+    console.log('DELETE REQUEST: ', id);
+
+    return new HttpResponse(null, { status: 204 });
   }),
 ];
 
@@ -105,58 +112,68 @@ describe('ListCategory', () => {
     await waitFor(() => {
       expect(lastRequestUrl).toContain('page=2');
     });
-
-    // // Assert UI updated
-    // expect(await screen.findByText('Category 11')).toBeInTheDocument();
   });
 
-  // it('should handle on PageChange', async () => {
-  //   renderWithProviders(<CategoryList />);
+  it('should handle filter change', async () => {
+    renderWithProviders(<CategoryList />);
 
-  //   await waitFor(() => {
-  //     const name = screen.getByText('Category 1');
-  //     expect(name).toBeInTheDocument();
-  //   });
+    await waitFor(() => {
+      const name = screen.getByText('Category 1');
+      expect(name).toBeInTheDocument();
+    });
 
-  //   // const myComand: BrowserCommands ;
+    const input = screen.getByPlaceholderText(/search/i);
+    fireEvent.change(input, { target: { value: 'Category 11' } });
 
-  //   // console.log(myComand)
+    await waitFor(() => {
+      const loading = screen.getByRole('progressbar');
+      expect(loading).toBeInTheDocument();
+    });
+  });
 
-  //   const user = userEvent.setup();
+  it('should handle Delete Category success', async () => {
+    renderWithProviders(<CategoryList />);
 
-  //   await user.click(screen.getByTestId('KeyboardArrowRightIcon'));
+    await waitFor(() => {
+      const name = screen.getByText('Category 2');
+      expect(name).toBeInTheDocument();
+    });
 
-  //   let lastRequestUrl = '';
+    const [firstDeleteButton] = screen.getAllByTestId('delete-button');
+    await userEvent.setup().click(firstDeleteButton);
 
-  //   server.use(
-  //     http.get(`${baseURL}/categories`, ({ request }) => {
-  //       lastRequestUrl = request.url;
-  //       return HttpResponse.json(categoryResponsePage2);
-  //     }),
-  //   );
+    expect(
+      await screen.findByText(/category deleted/i, {}, { timeout: 3000 }),
+    ).toBeInTheDocument();
+  });
 
-  //   await waitFor(() => {
-  //     expect(lastRequestUrl).toContain('page=2');
-  //   });
+  it('should handle Delete Category error', async () => {
+    server.use(
+      http.delete(`${baseURL}/categories/:id`, async () => {
+        await delay(150);
+        return HttpResponse.json(
+          { message: 'Error deleting category' },
+          { status: 500 },
+        );
+      }),
+    );
 
-  //   // expect(screen.getByTestId('location')).toHaveTextContent('page=2');
-  //   // const size = await screen.findByText('1-10 of 11');
-  //   // console.log(size)
-  //   // expect(size).toBeInTheDocument();
-  //   // const nextButton = screen.getByTestId('KeyboardArrowRightIcon');
+    renderWithProviders(<CategoryList />);
 
-  //   // fireEvent.click(nextButton);
+    await waitFor(() => {
+      const name = screen.getByText('Category 2');
+      expect(name).toBeInTheDocument();
+    });
 
-  //   // console.log("After click")
-  //   // store.dispatch(categorySlice.actions.setPage(2));
+    const [firstDeleteButton] = screen.getAllByTestId('delete-button');
+    await userEvent.setup().click(firstDeleteButton);
 
-  //   // await waitFor(() => {
-  //   //   const name = screen.getByText('Category 11');
-  //   //   expect(name).toBeInTheDocument();
-  //   // });
-  // });
-
-  // it('should handle filter change', async () => {
-  //   renderWithProviders(<CategoryList />);
-  // });
+    expect(
+      await screen.findByText(
+        /error deleting category/i,
+        {},
+        { timeout: 3000 },
+      ),
+    ).toBeInTheDocument();
+  });
 });

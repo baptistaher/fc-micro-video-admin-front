@@ -102,6 +102,7 @@ export const CategoriesTable = ({
         color="secondary"
         aria-label="delete"
         onClick={() => handleDelete(value)}
+        data-testid="delete-button"
       >
         <DeleteIcon />
       </IconButton>
